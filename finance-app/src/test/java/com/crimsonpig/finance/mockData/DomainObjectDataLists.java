@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.crimsonpig.finance.budget.*;
 import com.crimsonpig.finance.summary.CategorizedAmount;
@@ -62,6 +63,20 @@ public class DomainObjectDataLists {
 		transactions.add(new Transaction("EATING OUT", LocalDate.of(2016, 3, 26), "E", new BigDecimal(53.05)));
 		transactions.add(new Transaction("PAYCHECK", LocalDate.of(2016, 3, 30), "I", new BigDecimal(2050.00)));
 		return transactions;
+	}
+
+	public List<CategorizedAmount> getExpenseItems() {
+		List<CategorizedAmount> items = new ArrayList<CategorizedAmount>();
+		items.add(new CategorizedAmount("GAS", new BigDecimal(200)));
+		items.add(new CategorizedAmount("HOUSEHOLD", new BigDecimal(200)));
+		items.add(new CategorizedAmount("FOOD", new BigDecimal(350)));
+		return items;
+	}
+
+	public List<CategorizedAmount> getIncomeItems() {
+		List<CategorizedAmount> items = new ArrayList<CategorizedAmount>();
+		items.add(new CategorizedAmount("PAYCHECK", new BigDecimal(4100)));
+		return items;
 	}
 	
 }

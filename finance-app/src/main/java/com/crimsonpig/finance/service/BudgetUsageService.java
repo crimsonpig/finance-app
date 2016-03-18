@@ -5,16 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.crimsonpig.finance.budget.BudgetItem;
 import com.crimsonpig.finance.budget.BudgetUsageRecord;
 import com.crimsonpig.finance.summary.CategorizedAmount;
 
 public class BudgetUsageService {
 
-	public List<BudgetUsageRecord> compareExpectedWithActual(List<BudgetItem> budgetItems, List<CategorizedAmount> actualItems) {
+	public List<BudgetUsageRecord> compareExpectedWithActual(List<CategorizedAmount> budgetItems, List<CategorizedAmount> actualItems) {
 
-		return getCategoriesStream(budgetItemToCategorizedAmount(budgetItems), actualItems.stream())
-				.map(category -> buildRecord(category, budgetItemToCategorizedAmount(budgetItems), actualItems.stream()))
+		return getCategoriesStream(budgetItems.stream(), actualItems.stream())
+				.map(category -> buildRecord(category, budgetItems.stream(), actualItems.stream()))
 				.collect(Collectors.toList());
 	}
 
@@ -24,11 +23,7 @@ public class BudgetUsageService {
 				actualItems.map(item -> item.getCategory()))
 				.distinct().parallel();
 	}
-	
-	private Stream<CategorizedAmount> budgetItemToCategorizedAmount(List<BudgetItem> budgetItems) {
-		return budgetItems.stream().map(item -> new CategorizedAmount(item.getCategory(), item.getAmount()));
-	}
-	
+
 	private BudgetUsageRecord buildRecord(String category, Stream<CategorizedAmount> budgetItems, Stream<CategorizedAmount> actualItems){
 		BigDecimal expectedAmount = getAmountFromItemCategory(category, budgetItems);
 		BigDecimal actualAmount = getAmountFromItemCategory(category, actualItems);

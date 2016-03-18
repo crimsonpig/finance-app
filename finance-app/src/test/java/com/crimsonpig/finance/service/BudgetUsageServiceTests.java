@@ -18,18 +18,17 @@ import com.crimsonpig.finance.summary.CategorizedAmount;
 
 public class BudgetUsageServiceTests {
 
-	private List<BudgetItem> expenseItems;
-	private List<BudgetItem> incomeItems;
+	private List<CategorizedAmount> expenseItems;
+	private List<CategorizedAmount> incomeItems;
 	private List<CategorizedAmount> actualExpenses;
 	private List<CategorizedAmount> actualIncomes;
 	
 	@Before
 	public void setUp(){
 		DomainObjectDataLists lists = new DomainObjectDataLists();
-		List<BudgetItem> budgetItems = lists.getBudgetItems();
-		
-		expenseItems = budgetItems.stream().filter(item -> item.getItemType().equals("E")).collect(Collectors.toList());
-		incomeItems = budgetItems.stream().filter(item -> item.getItemType().equals("I")).collect(Collectors.toList());
+
+		expenseItems = lists.getExpenseItems(); 
+		incomeItems = lists.getIncomeItems();
 		actualExpenses = lists.getExpenseSummary();
 		actualIncomes = lists.getIncomesSummary();
 	}
@@ -80,7 +79,7 @@ public class BudgetUsageServiceTests {
 		assertEquals("PAYCHECK", record.getCategory());
 		assertEquals(new BigDecimal(4100), record.getExpectedAmount());
 		assertEquals(new BigDecimal(4100), record.getActualAmount());
-		assertEquals(0, record.getNetDifference());
+		assertEquals(new BigDecimal(0), record.getNetDifference());
 		
 		
 	}
