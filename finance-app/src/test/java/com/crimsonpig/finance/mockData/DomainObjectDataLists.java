@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.crimsonpig.finance.budget.*;
 import com.crimsonpig.finance.summary.CategorizedAmount;
+import com.crimsonpig.finance.summary.SummaryResponse;
 import com.crimsonpig.finance.transaction.Transaction;
 
 public class DomainObjectDataLists {
@@ -77,6 +78,13 @@ public class DomainObjectDataLists {
 		List<CategorizedAmount> items = new ArrayList<CategorizedAmount>();
 		items.add(new CategorizedAmount("PAYCHECK", new BigDecimal(4100)));
 		return items;
+	}
+
+	public SummaryResponse getTransactionSummary() {
+		SummaryResponse response = new SummaryResponse();
+		response.setExpenses(getExpenseSummary());
+		response.setIncomes(getIncomesSummary());
+		return response;
 	}
 	
 }

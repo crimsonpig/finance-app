@@ -1,0 +1,78 @@
+package com.crimsonpig.finance.service;
+
+import static org.junit.Assert.*;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import com.crimsonpig.finance.budget.BudgetCompareRecord;
+import com.crimsonpig.finance.budget.BudgetComparisonResponse;
+import com.crimsonpig.finance.budget.BudgetItem;
+import com.crimsonpig.finance.mockData.DomainObjectDataLists;
+import com.crimsonpig.finance.summary.SummaryResponse;
+
+public class BudgetComparisonResponseTests {
+
+	private List<BudgetItem> budgetItems;
+	private SummaryResponse transactionSummary;
+	
+	@Before
+	public void setUp(){
+		DomainObjectDataLists lists = new DomainObjectDataLists();
+		budgetItems = lists.getBudgetItems();
+		transactionSummary = lists.getTransactionSummary();
+	}
+	
+	@Test
+	public void testBudgetComparison(){
+		
+		BudgetComparisonResponse response = new BudgetComparisonSummaryService()
+				.compareBudgetWithActual(budgetItems, transactionSummary);
+		
+		List<BudgetCompareRecord> incomesComparison = response.getIncomes();
+		assertEquals(1, incomesComparison.size());
+		BudgetCompareRecord incomeComparison = incomesComparison.get(0);
+		assertEquals("PAYCHECK", incomeComparison.getCategory());
+		assertEquals(4100.0, incomeComparison.getExpectedAmount().doubleValue(), 0.001);
+		assertEquals(4100.0, incomeComparison.getActualAmount().doubleValue(), 0.001);
+		assertEquals(0.0, incomeComparison.getNetDifference().doubleValue(), 0.001);
+		
+		List<BudgetCompareRecord> expensesComparison = response.getExpenses();
+		assertEquals(4, expensesComparison.size());
+		Map<String,BudgetCompareRecord> mapOfExpenses = expensesComparison
+				.stream()
+				.collect(Collectors.toMap(item -> item.getCategory(), item -> item));
+		
+		BudgetCompareRecord gas = mapOfExpenses.get("GAS");
+		BudgetCompareRecord food = mapOfExpenses.get("FOOD");
+		BudgetCompareRecord eatingOut = mapOfExpenses.get("EATING OUT");
+		BudgetCompareRecord household = mapOfExpenses.get("HOUSEHOLD");
+		
+		assertEquals("GAS", gas.getCategory());
+		assertEquals(new BigDecimal(200), gas.getExpectedAmount());
+		assertEquals(new BigDecimal(158.89), gas.getActualAmount());
+		assertEquals(new BigDecimal(41.11).setScale(2, RoundingMode.HALF_EVEN), gas.getNetDifference().setScale(2, RoundingMode.HALF_EVEN));
+		
+		assertEquals("FOOD", food.getCategory());
+		assertEquals(new BigDecimal(350), food.getExpectedAmount());
+		assertEquals(new BigDecimal(0), food.getActualAmount());
+		assertEquals(new BigDecimal(350), food.getNetDifference());
+		
+		assertEquals("EATING OUT", eatingOut.getCategory());
+		assertEquals(new BigDecimal(0), eatingOut.getExpectedAmount());
+		assertEquals(new BigDecimal(289.36), eatingOut.getActualAmount());
+		assertEquals(new BigDecimal(-289.36), eatingOut.getNetDifference());
+		
+		assertEquals("HOUSEHOLD", household.getCategory());
+		assertEquals(new BigDecimal(200), household.getExpectedAmount());
+		assertEquals(new BigDecimal(213.44), household.getActualAmount());
+		assertEquals(new BigDecimal(-13.44).setScale(2, RoundingMode.HALF_EVEN), household.getNetDifference().setScale(2, RoundingMode.HALF_EVEN));
+		
+	}
+}
