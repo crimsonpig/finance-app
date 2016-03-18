@@ -12,11 +12,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.crimsonpig.finance.budget.BudgetItem;
-import com.crimsonpig.finance.budget.BudgetUsageRecord;
+import com.crimsonpig.finance.budget.BudgetCompareRecord;
 import com.crimsonpig.finance.mockData.DomainObjectDataLists;
 import com.crimsonpig.finance.summary.CategorizedAmount;
 
-public class BudgetUsageServiceTests {
+public class BudgetCompareServiceTests {
 
 	private List<CategorizedAmount> expenseItems;
 	private List<CategorizedAmount> incomeItems;
@@ -36,17 +36,17 @@ public class BudgetUsageServiceTests {
 	@Test
 	public void compareExpensesWithActual(){
 		
-		List<BudgetUsageRecord> usageRecords = new BudgetUsageService().compareExpectedWithActual(expenseItems, actualExpenses);
+		List<BudgetCompareRecord> usageRecords = new BudgetCompareService().compareExpectedWithActual(expenseItems, actualExpenses);
 		
 		assertEquals(4, usageRecords.size());
-		Map<String,BudgetUsageRecord> mapOfRecords = usageRecords
+		Map<String,BudgetCompareRecord> mapOfRecords = usageRecords
 				.stream()
 				.collect(Collectors.toMap(item -> item.getCategory(), item -> item));
 		
-		BudgetUsageRecord gas = mapOfRecords.get("GAS");
-		BudgetUsageRecord food = mapOfRecords.get("FOOD");
-		BudgetUsageRecord eatingOut = mapOfRecords.get("EATING OUT");
-		BudgetUsageRecord household = mapOfRecords.get("HOUSEHOLD");
+		BudgetCompareRecord gas = mapOfRecords.get("GAS");
+		BudgetCompareRecord food = mapOfRecords.get("FOOD");
+		BudgetCompareRecord eatingOut = mapOfRecords.get("EATING OUT");
+		BudgetCompareRecord household = mapOfRecords.get("HOUSEHOLD");
 		
 		assertEquals("GAS", gas.getCategory());
 		assertEquals(new BigDecimal(200), gas.getExpectedAmount());
@@ -72,10 +72,10 @@ public class BudgetUsageServiceTests {
 	
 	@Test
 	public void testCompareIncomesWithActual(){
-		List<BudgetUsageRecord> usageRecords = new BudgetUsageService().compareExpectedWithActual(incomeItems, actualIncomes);
+		List<BudgetCompareRecord> usageRecords = new BudgetCompareService().compareExpectedWithActual(incomeItems, actualIncomes);
 		
 		assertEquals(1, usageRecords.size());
-		BudgetUsageRecord record = usageRecords.get(0);
+		BudgetCompareRecord record = usageRecords.get(0);
 		assertEquals("PAYCHECK", record.getCategory());
 		assertEquals(new BigDecimal(4100), record.getExpectedAmount());
 		assertEquals(new BigDecimal(4100), record.getActualAmount());
