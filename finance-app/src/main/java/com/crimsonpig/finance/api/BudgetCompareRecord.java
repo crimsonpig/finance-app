@@ -7,6 +7,7 @@ public class BudgetCompareRecord {
 	private String category;
 	private BigDecimal expectedAmount;
 	private BigDecimal actualAmount;
+	private BigDecimal netDifference;
 
 	public BudgetCompareRecord(){
 		
@@ -35,5 +36,14 @@ public class BudgetCompareRecord {
 	public void setActualAmount(BigDecimal actualAmount) {
 		this.actualAmount = actualAmount;
 	}
+
+	public BigDecimal getNetDifference() {
+		return netDifference;
+	}
+
+	public void setNetDifference(BigDecimal netDifference) {
+		this.netDifference = netDifference;
+	}
+	
 	
 }

@@ -2,8 +2,8 @@ package com.crimsonpig.finance.service;
 
 import java.util.List;
 
-import com.crimsonpig.finance.budget.BudgetCompareRecord;
-import com.crimsonpig.finance.budget.BudgetComparisonResponse;
+import com.crimsonpig.finance.budget.CompareRecord;
+import com.crimsonpig.finance.budget.ComparisonResponse;
 import com.crimsonpig.finance.budget.BudgetItem;
 import com.crimsonpig.finance.summary.CategorizedAmount;
 import com.crimsonpig.finance.summary.SummaryResponse;
@@ -18,19 +18,19 @@ public class BudgetComparisonSummaryService {
 		budgetCompare = new BudgetCompareService();
 	}
 	
-	public BudgetComparisonResponse compareBudgetWithActual(List<BudgetItem> budgetItems,
+	public ComparisonResponse compareBudgetWithActual(List<BudgetItem> budgetItems,
 			SummaryResponse transactionSummary) {
 		SummaryResponse budgetAmounts = getBudgetAmounts(budgetItems);
-		List<BudgetCompareRecord> expenseComparisons = calculateBudgetComparison(budgetAmounts.getExpenses(), transactionSummary.getExpenses());
-		List<BudgetCompareRecord> incomeComparisons = calculateBudgetComparison(budgetAmounts.getIncomes(), transactionSummary.getIncomes());
-		return new BudgetComparisonResponse(incomeComparisons, expenseComparisons);
+		List<CompareRecord> expenseComparisons = calculateBudgetComparison(budgetAmounts.getExpenses(), transactionSummary.getExpenses());
+		List<CompareRecord> incomeComparisons = calculateBudgetComparison(budgetAmounts.getIncomes(), transactionSummary.getIncomes());
+		return new ComparisonResponse(incomeComparisons, expenseComparisons);
 	}
 	
 	private SummaryResponse getBudgetAmounts(List<BudgetItem> budgetItems){
 		return budgetSummarizer.buildBudgetSummary(budgetItems);
 	}
 	
-	private List<BudgetCompareRecord> 
+	private List<CompareRecord> 
 		calculateBudgetComparison(List<CategorizedAmount> planned, List<CategorizedAmount> actual){
 		return budgetCompare.compareExpectedWithActual(planned, actual);
 	}

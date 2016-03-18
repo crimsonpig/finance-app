@@ -2,13 +2,13 @@ package com.crimsonpig.finance.budget;
 
 import java.math.BigDecimal;
 
-public class BudgetCompareRecord {
+public class CompareRecord {
 
 	private final String category;
 	private final BigDecimal expectedAmount;
 	private final BigDecimal actualAmount;
 	
-	public BudgetCompareRecord(String category, BigDecimal expectedAmount, BigDecimal actualAmount) {
+	public CompareRecord(String category, BigDecimal expectedAmount, BigDecimal actualAmount) {
 		this.category = category;
 		this.expectedAmount = expectedAmount;
 		this.actualAmount = actualAmount;

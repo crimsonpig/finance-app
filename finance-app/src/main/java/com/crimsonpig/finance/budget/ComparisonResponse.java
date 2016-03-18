@@ -3,22 +3,22 @@ package com.crimsonpig.finance.budget;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class BudgetComparisonResponse {
+public class ComparisonResponse {
 
-	private final List<BudgetCompareRecord> incomes;
+	private final List<CompareRecord> incomes;
 	
-	private final List<BudgetCompareRecord> expenses;
+	private final List<CompareRecord> expenses;
 
-	public BudgetComparisonResponse(List<BudgetCompareRecord> incomes, List<BudgetCompareRecord> expenses){
+	public ComparisonResponse(List<CompareRecord> incomes, List<CompareRecord> expenses){
 		this.incomes = incomes;
 		this.expenses = expenses;
 	}
 
-	public List<BudgetCompareRecord> getIncomes() {
+	public List<CompareRecord> getIncomes() {
 		return incomes;
 	}
 
-	public List<BudgetCompareRecord> getExpenses() {
+	public List<CompareRecord> getExpenses() {
 		return expenses;
 	}
 	
@@ -46,7 +46,7 @@ public class BudgetComparisonResponse {
 		return sumNetDifferences(expenses);
 	}
 
-	private BigDecimal sumExpectedTotals(List<BudgetCompareRecord> comparisons) {
+	private BigDecimal sumExpectedTotals(List<CompareRecord> comparisons) {
 		return comparisons
 				.stream()
 				.map(record -> record.getExpectedAmount())
@@ -54,7 +54,7 @@ public class BudgetComparisonResponse {
 				.orElse(BigDecimal.ZERO);
 	}
 	
-	private BigDecimal sumActualTotals(List<BudgetCompareRecord> comparisons) {
+	private BigDecimal sumActualTotals(List<CompareRecord> comparisons) {
 		return comparisons
 				.stream()
 				.map(record -> record.getActualAmount())
@@ -62,7 +62,7 @@ public class BudgetComparisonResponse {
 				.orElse(BigDecimal.ZERO);
 	}
 
-	private BigDecimal sumNetDifferences(List<BudgetCompareRecord> comparisons) {
+	private BigDecimal sumNetDifferences(List<CompareRecord> comparisons) {
 		return comparisons
 				.stream()
 				.map(record -> record.getNetDifference())

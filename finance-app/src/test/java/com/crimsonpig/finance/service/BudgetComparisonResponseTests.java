@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.crimsonpig.finance.budget.BudgetCompareRecord;
-import com.crimsonpig.finance.budget.BudgetComparisonResponse;
+import com.crimsonpig.finance.budget.CompareRecord;
+import com.crimsonpig.finance.budget.ComparisonResponse;
 import com.crimsonpig.finance.budget.BudgetItem;
 import com.crimsonpig.finance.mockData.DomainObjectDataLists;
 import com.crimsonpig.finance.summary.SummaryResponse;
@@ -31,7 +31,7 @@ public class BudgetComparisonResponseTests {
 	
 	@Test
 	public void testTotals(){
-		BudgetComparisonResponse response = new BudgetComparisonSummaryService()
+		ComparisonResponse response = new BudgetComparisonSummaryService()
 				.compareBudgetWithActual(budgetItems, transactionSummary);
 		
 		assertEquals(750, response.getExpectedExpenseTotal().doubleValue(), 0.001);
@@ -46,12 +46,12 @@ public class BudgetComparisonResponseTests {
 	@Test
 	public void testIncomeComparison(){
 		
-		BudgetComparisonResponse response = new BudgetComparisonSummaryService()
+		ComparisonResponse response = new BudgetComparisonSummaryService()
 				.compareBudgetWithActual(budgetItems, transactionSummary);
 		
-		List<BudgetCompareRecord> incomesComparison = response.getIncomes();
+		List<CompareRecord> incomesComparison = response.getIncomes();
 		assertEquals(1, incomesComparison.size());
-		BudgetCompareRecord incomeComparison = incomesComparison.get(0);
+		CompareRecord incomeComparison = incomesComparison.get(0);
 		assertEquals("PAYCHECK", incomeComparison.getCategory());
 		assertEquals(4100.0, incomeComparison.getExpectedAmount().doubleValue(), 0.001);
 		assertEquals(4100.0, incomeComparison.getActualAmount().doubleValue(), 0.001);
@@ -63,19 +63,19 @@ public class BudgetComparisonResponseTests {
 	@Test
 	public void testExpenseComparison(){
 		
-		BudgetComparisonResponse response = new BudgetComparisonSummaryService()
+		ComparisonResponse response = new BudgetComparisonSummaryService()
 				.compareBudgetWithActual(budgetItems, transactionSummary);
 
-		List<BudgetCompareRecord> expensesComparison = response.getExpenses();
+		List<CompareRecord> expensesComparison = response.getExpenses();
 		assertEquals(4, expensesComparison.size());
-		Map<String,BudgetCompareRecord> mapOfExpenses = expensesComparison
+		Map<String,CompareRecord> mapOfExpenses = expensesComparison
 				.stream()
 				.collect(Collectors.toMap(item -> item.getCategory(), item -> item));
 		
-		BudgetCompareRecord gas = mapOfExpenses.get("GAS");
-		BudgetCompareRecord food = mapOfExpenses.get("FOOD");
-		BudgetCompareRecord eatingOut = mapOfExpenses.get("EATING OUT");
-		BudgetCompareRecord household = mapOfExpenses.get("HOUSEHOLD");
+		CompareRecord gas = mapOfExpenses.get("GAS");
+		CompareRecord food = mapOfExpenses.get("FOOD");
+		CompareRecord eatingOut = mapOfExpenses.get("EATING OUT");
+		CompareRecord household = mapOfExpenses.get("HOUSEHOLD");
 		
 		assertEquals("GAS", gas.getCategory());
 		assertEquals(new BigDecimal(200), gas.getExpectedAmount());

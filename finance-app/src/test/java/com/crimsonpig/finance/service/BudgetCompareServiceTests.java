@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.crimsonpig.finance.budget.BudgetItem;
-import com.crimsonpig.finance.budget.BudgetCompareRecord;
+import com.crimsonpig.finance.budget.CompareRecord;
 import com.crimsonpig.finance.mockData.DomainObjectDataLists;
 import com.crimsonpig.finance.summary.CategorizedAmount;
 
@@ -36,17 +36,17 @@ public class BudgetCompareServiceTests {
 	@Test
 	public void compareExpensesWithActual(){
 		
-		List<BudgetCompareRecord> usageRecords = new BudgetCompareService().compareExpectedWithActual(expenseItems, actualExpenses);
+		List<CompareRecord> usageRecords = new BudgetCompareService().compareExpectedWithActual(expenseItems, actualExpenses);
 		
 		assertEquals(4, usageRecords.size());
-		Map<String,BudgetCompareRecord> mapOfRecords = usageRecords
+		Map<String,CompareRecord> mapOfRecords = usageRecords
 				.stream()
 				.collect(Collectors.toMap(item -> item.getCategory(), item -> item));
 		
-		BudgetCompareRecord gas = mapOfRecords.get("GAS");
-		BudgetCompareRecord food = mapOfRecords.get("FOOD");
-		BudgetCompareRecord eatingOut = mapOfRecords.get("EATING OUT");
-		BudgetCompareRecord household = mapOfRecords.get("HOUSEHOLD");
+		CompareRecord gas = mapOfRecords.get("GAS");
+		CompareRecord food = mapOfRecords.get("FOOD");
+		CompareRecord eatingOut = mapOfRecords.get("EATING OUT");
+		CompareRecord household = mapOfRecords.get("HOUSEHOLD");
 		
 		assertEquals("GAS", gas.getCategory());
 		assertEquals(new BigDecimal(200), gas.getExpectedAmount());
@@ -72,10 +72,10 @@ public class BudgetCompareServiceTests {
 	
 	@Test
 	public void testCompareIncomesWithActual(){
-		List<BudgetCompareRecord> usageRecords = new BudgetCompareService().compareExpectedWithActual(incomeItems, actualIncomes);
+		List<CompareRecord> usageRecords = new BudgetCompareService().compareExpectedWithActual(incomeItems, actualIncomes);
 		
 		assertEquals(1, usageRecords.size());
-		BudgetCompareRecord record = usageRecords.get(0);
+		CompareRecord record = usageRecords.get(0);
 		assertEquals("PAYCHECK", record.getCategory());
 		assertEquals(new BigDecimal(4100), record.getExpectedAmount());
 		assertEquals(new BigDecimal(4100), record.getActualAmount());
