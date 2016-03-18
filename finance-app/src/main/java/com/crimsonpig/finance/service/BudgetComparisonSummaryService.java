@@ -20,13 +20,10 @@ public class BudgetComparisonSummaryService {
 	
 	public BudgetComparisonResponse compareBudgetWithActual(List<BudgetItem> budgetItems,
 			SummaryResponse transactionSummary) {
-		BudgetComparisonResponse response = new BudgetComparisonResponse();
 		SummaryResponse budgetAmounts = getBudgetAmounts(budgetItems);
 		List<BudgetCompareRecord> expenseComparisons = calculateBudgetComparison(budgetAmounts.getExpenses(), transactionSummary.getExpenses());
 		List<BudgetCompareRecord> incomeComparisons = calculateBudgetComparison(budgetAmounts.getIncomes(), transactionSummary.getIncomes());
-		response.setExpenses(expenseComparisons);
-		response.setIncomes(incomeComparisons);
-		return response;
+		return new BudgetComparisonResponse(incomeComparisons, expenseComparisons);
 	}
 	
 	private SummaryResponse getBudgetAmounts(List<BudgetItem> budgetItems){
