@@ -3,7 +3,7 @@ package com.crimsonpig.finance.api;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class SummaryResponse {
+public class FinancialSummary {
 
 	private List<CategorizedAmount> expenses;
 	
@@ -15,7 +15,7 @@ public class SummaryResponse {
 	
 	public BigDecimal netTotal;
 	
-	public SummaryResponse(){
+	public FinancialSummary(){
 		
 	}
 

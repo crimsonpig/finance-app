@@ -3,7 +3,7 @@ package com.crimsonpig.finance.api;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class BudgetItem {
+public class PlannedBudgetItem {
 
 	private String category;
 	private BigDecimal amount;
@@ -11,7 +11,7 @@ public class BudgetItem {
 	private LocalDate startDate;
 	private LocalDate endDate;
 	
-	public BudgetItem() {
+	public PlannedBudgetItem() {
 		
 	}
 
