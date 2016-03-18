@@ -48,15 +48,15 @@ public class TransactionSummaryServiceTests {
 		
 		CategorizedAmount gas = mapOfExpenses.get("GAS");
 		assertEquals("GAS", gas.getCategory());
-		assertEquals(new BigDecimal(80), gas.getAmount());
+		assertEquals(new BigDecimal(105.21).doubleValue(), gas.getAmount().doubleValue(), 0.001);
 		
 		CategorizedAmount household = mapOfExpenses.get("HOUSEHOLD");
 		assertEquals("HOUSEHOLD", household.getCategory());
-		assertEquals(new BigDecimal(80), household.getAmount());
+		assertEquals(new BigDecimal(122.35).doubleValue(), household.getAmount().doubleValue(), 0.001);
 		
 		CategorizedAmount food = mapOfExpenses.get("EATING OUT");
 		assertEquals("EATING OUT", food.getCategory());
-		assertEquals(new BigDecimal(80), food.getAmount());
+		assertEquals(new BigDecimal(140.77).doubleValue(), food.getAmount().doubleValue(), 0.001);
 		
 	}
 	
@@ -64,10 +64,9 @@ public class TransactionSummaryServiceTests {
 	public void testTotals(){
 		SummaryResponse response = new TransactionSummaryService().buildTransactionSummary(transactions);
 		
-		assertEquals(new BigDecimal(0.00), response.getExpensesTotal());
-		assertEquals(new BigDecimal(0.00), response.getIncomesTotal());
-		assertEquals(response.getNetTotal().setScale(2, RoundingMode.HALF_EVEN), 
-				response.getIncomesTotal().subtract(response.getExpensesTotal()));
+		assertEquals(new BigDecimal(368.33).doubleValue(), response.getExpensesTotal().doubleValue(), 0.001);
+		assertEquals(new BigDecimal(4100), response.getIncomesTotal());
+		assertEquals(new BigDecimal(3731.67).doubleValue(), response.getNetTotal().doubleValue(), 0.001);
 		
 	}
 }

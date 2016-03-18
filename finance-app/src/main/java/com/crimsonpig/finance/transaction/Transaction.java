@@ -30,7 +30,7 @@ public class Transaction {
 		return tDate;
 	}
 
-	public String gettType() {
+	public String getTType() {
 		return tType.toString();
 	}
 

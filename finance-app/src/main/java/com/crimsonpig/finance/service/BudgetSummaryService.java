@@ -47,8 +47,8 @@ public class BudgetSummaryService {
 		return new CategorizedAmount(category, categoryTotal);
 	}
 	
-	private BigDecimal calculateTotal(List<CategorizedAmount> expenses) {
-		return expenses.stream().map(item -> item.getAmount()).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+	private BigDecimal calculateTotal(List<CategorizedAmount> amounts) {
+		return amounts.stream().map(item -> item.getAmount()).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
 	}
 
 }
