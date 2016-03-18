@@ -16,7 +16,7 @@ import com.crimsonpig.finance.budget.BudgetUsageRecord;
 import com.crimsonpig.finance.mockData.DomainObjectDataLists;
 import com.crimsonpig.finance.summary.CategorizedAmount;
 
-public class BudgetUsgeServiceTests {
+public class BudgetUsageServiceTests {
 
 	private List<BudgetItem> expenseItems;
 	private List<BudgetItem> incomeItems;
