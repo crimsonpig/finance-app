@@ -5,10 +5,10 @@ import java.util.List;
 
 public class FinancialSummary {
 
-	private List<CategorizedAmount> expenses;
-	
 	private List<CategorizedAmount> incomes;
 	
+	private List<CategorizedAmount> expenses;
+
 	public BigDecimal expensesTotal;
 	
 	public BigDecimal incomesTotal;

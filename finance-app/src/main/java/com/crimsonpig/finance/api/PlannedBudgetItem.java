@@ -3,6 +3,9 @@ package com.crimsonpig.finance.api;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PlannedBudgetItem {
 
 	private String category;
