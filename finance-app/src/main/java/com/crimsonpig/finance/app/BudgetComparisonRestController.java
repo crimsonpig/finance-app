@@ -23,6 +23,7 @@ import com.crimsonpig.finance.mapper.BudgetComparisonResponseMapper;
 import com.crimsonpig.finance.mapper.BudgetItemMapper;
 import com.crimsonpig.finance.mapper.SummaryMapper;
 import com.crimsonpig.finance.service.BudgetComparisonSummaryService;
+import com.crimsonpig.finance.service.RetrieveActualItemsService;
 import com.crimsonpig.finance.service.RetrieveBudgetItemsService;
 import com.crimsonpig.finance.summary.SummaryResponse;
 
@@ -34,22 +35,18 @@ public class BudgetComparisonRestController {
 	
 	private RetrieveBudgetItemsService retrieveBudgetItems = new RetrieveBudgetItemsService();
 	
+	private RetrieveActualItemsService retrieveActualItems = new RetrieveActualItemsService();
+	
 	@RequestMapping(path = "/budget/comparison", method = GET)
 	public BudgetComparisonResponse comparison(@RequestParam(name = "startDt", required=true) String startDt, @RequestParam(name = "endDt", required=true) String endDt){
-		RestTemplate restTemplate = new RestTemplate();
-		String host = "linuxbox";
-
 
 		PlannedBudgetItem[] budgetItems = retrieveBudgetItems.retrieveBudgetItems(startDt, endDt);
 		
 		BudgetItemMapper mapper = new BudgetItemMapper();
 		
 		List<BudgetItem> budgeted = Stream.of(budgetItems).map(item -> mapper.mapFromApiObject(item)).collect(Collectors.toList());
-		
-		
-		String summaryPath = "/reports/transactions";
-		String transactionSummaryUrl = String.format("http://%s%s?startDt=%s&endDt=%s", host, summaryPath, startDt, endDt);
-		FinancialSummary transactionSummary = restTemplate.getForObject(transactionSummaryUrl, FinancialSummary.class);
+
+		FinancialSummary transactionSummary = retrieveActualItems.retrieveTransactionSummary(startDt, endDt);
 		SummaryResponse summary = new SummaryMapper().mapFromApiObject(transactionSummary);
 		
 		BudgetComparisonSummaryService service = new BudgetComparisonSummaryService();
