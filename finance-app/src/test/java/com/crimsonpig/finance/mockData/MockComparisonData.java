@@ -11,15 +11,15 @@ public class MockComparisonData {
 
 	public List<CompareRecord> getIncomeComparisons() {
 		List<CompareRecord> incomes = new ArrayList<CompareRecord>(1);
-		incomes.add(new CompareRecord("PAYCHECK", new BigDecimal(4100), new BigDecimal(4100)));
+		incomes.add(new CompareRecord("PAYCHECK", new BigDecimal(4100), new BigDecimal(4100), BigDecimal.ZERO));
 		return incomes;
 	}
 
 	public List<CompareRecord> getExpenseComparisons() {
 		List<CompareRecord> expenses = new ArrayList<CompareRecord>(1);
-		expenses.add(new CompareRecord("GAS", new BigDecimal(200), new BigDecimal(187.98)));
-		expenses.add(new CompareRecord("HOUSEHOLD", new BigDecimal(200), new BigDecimal(107.25)));
-		expenses.add(new CompareRecord("FOOD", new BigDecimal(350), new BigDecimal(358.99)));
+		expenses.add(new CompareRecord("GAS", new BigDecimal(200), new BigDecimal(187.98), new BigDecimal(12.02)));
+		expenses.add(new CompareRecord("HOUSEHOLD", new BigDecimal(200), new BigDecimal(107.25), new BigDecimal(92.75)));
+		expenses.add(new CompareRecord("FOOD", new BigDecimal(350), new BigDecimal(358.99), new BigDecimal(-8.99)));
 		return expenses;
 	}
 

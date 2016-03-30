@@ -27,7 +27,7 @@ public class BudgetCompareService {
 	private CompareRecord buildRecord(String category, Stream<CategorizedAmount> budgetItems, Stream<CategorizedAmount> actualItems){
 		BigDecimal expectedAmount = getAmountFromItemCategory(category, budgetItems);
 		BigDecimal actualAmount = getAmountFromItemCategory(category, actualItems);
-		return new CompareRecord(category, expectedAmount, actualAmount);
+		return new CompareRecord(category, expectedAmount, actualAmount, expectedAmount.subtract(actualAmount));
 	}
 
 	private BigDecimal getAmountFromItemCategory(String category, Stream<CategorizedAmount> items) {
