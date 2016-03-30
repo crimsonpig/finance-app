@@ -21,18 +21,13 @@ public class BudgetComparisonSummaryService {
 	public ComparisonResponse compareBudgetWithActual(List<BudgetItem> budgetItems,
 			SummaryResponse transactionSummary) {
 		SummaryResponse budgetAmounts = getBudgetAmounts(budgetItems);
-		List<CompareRecord> expenseComparisons = calculateBudgetComparison(budgetAmounts.getExpenses(), transactionSummary.getExpenses());
-		List<CompareRecord> incomeComparisons = calculateBudgetComparison(budgetAmounts.getIncomes(), transactionSummary.getIncomes());
+		List<CompareRecord> expenseComparisons = budgetCompare.compareExpectedExpensesWithActual(budgetAmounts.getExpenses(), transactionSummary.getExpenses());
+		List<CompareRecord> incomeComparisons = budgetCompare.compareExpectedIncomesWithActual(budgetAmounts.getIncomes(), transactionSummary.getIncomes());
 		return new ComparisonResponse(incomeComparisons, expenseComparisons);
 	}
 	
 	private SummaryResponse getBudgetAmounts(List<BudgetItem> budgetItems){
 		return budgetSummarizer.buildBudgetSummary(budgetItems);
-	}
-	
-	private List<CompareRecord> 
-		calculateBudgetComparison(List<CategorizedAmount> planned, List<CategorizedAmount> actual){
-		return budgetCompare.compareExpectedWithActual(planned, actual);
 	}
 
 }

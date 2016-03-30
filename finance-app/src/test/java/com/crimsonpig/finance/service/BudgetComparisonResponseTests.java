@@ -37,10 +37,10 @@ public class BudgetComparisonResponseTests {
 		assertEquals(750, response.getExpectedExpenseTotal().doubleValue(), 0.001);
 		assertEquals(4100, response.getExpectedIncomeTotal().doubleValue(), 0.001);
 		assertEquals(661.69, response.getActualExpenseTotal().doubleValue(), 0.001);
-		assertEquals(4100, response.getActualIncomeTotal().doubleValue(), 0.001);
-		assertEquals(0, response.getNetIncomeDifference().doubleValue(), 0.001);
+		assertEquals(2050, response.getActualIncomeTotal().doubleValue(), 0.001);
+		assertEquals(-2050, response.getNetIncomeDifference().doubleValue(), 0.001);
 		assertEquals(88.31, response.getNetExpenseDifference().doubleValue(), 0.001);
-		assertEquals(88.31, response.getTotalNetDifference().doubleValue(), 0.001);
+		assertEquals(-1961.69, response.getTotalNetDifference().doubleValue(), 0.001);
 	}
 	
 	@Test
@@ -54,8 +54,8 @@ public class BudgetComparisonResponseTests {
 		CompareRecord incomeComparison = incomesComparison.get(0);
 		assertEquals("PAYCHECK", incomeComparison.getCategory());
 		assertEquals(4100.0, incomeComparison.getExpectedAmount().doubleValue(), 0.001);
-		assertEquals(4100.0, incomeComparison.getActualAmount().doubleValue(), 0.001);
-		assertEquals(0.0, incomeComparison.getNetDifference().doubleValue(), 0.001);
+		assertEquals(2050.0, incomeComparison.getActualAmount().doubleValue(), 0.001);
+		assertEquals(-2050.0, incomeComparison.getNetDifference().doubleValue(), 0.001);
 
 	}
 	

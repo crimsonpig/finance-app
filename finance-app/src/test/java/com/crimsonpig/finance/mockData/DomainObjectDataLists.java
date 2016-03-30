@@ -42,7 +42,7 @@ public class DomainObjectDataLists {
 	
 	public List<CategorizedAmount> getIncomesSummary(){
 		List<CategorizedAmount> incomes = new ArrayList<CategorizedAmount>();
-		incomes.add(new CategorizedAmount("PAYCHECK", new BigDecimal(4100)));
+		incomes.add(new CategorizedAmount("PAYCHECK", new BigDecimal(2050)));
 		return incomes;
 	}
 	

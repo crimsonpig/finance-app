@@ -36,7 +36,7 @@ public class BudgetCompareServiceTests {
 	@Test
 	public void compareExpensesWithActual(){
 		
-		List<CompareRecord> usageRecords = new BudgetCompareService().compareExpectedWithActual(expenseItems, actualExpenses);
+		List<CompareRecord> usageRecords = new BudgetCompareService().compareExpectedExpensesWithActual(expenseItems, actualExpenses);
 		
 		assertEquals(4, usageRecords.size());
 		Map<String,CompareRecord> mapOfRecords = usageRecords
@@ -72,14 +72,14 @@ public class BudgetCompareServiceTests {
 	
 	@Test
 	public void testCompareIncomesWithActual(){
-		List<CompareRecord> usageRecords = new BudgetCompareService().compareExpectedWithActual(incomeItems, actualIncomes);
+		List<CompareRecord> usageRecords = new BudgetCompareService().compareExpectedIncomesWithActual(incomeItems, actualIncomes);
 		
 		assertEquals(1, usageRecords.size());
 		CompareRecord record = usageRecords.get(0);
 		assertEquals("PAYCHECK", record.getCategory());
 		assertEquals(new BigDecimal(4100), record.getExpectedAmount());
-		assertEquals(new BigDecimal(4100), record.getActualAmount());
-		assertEquals(new BigDecimal(0), record.getNetDifference());
+		assertEquals(new BigDecimal(2050), record.getActualAmount());
+		assertEquals(new BigDecimal(-2050), record.getNetDifference());
 		
 		
 	}
