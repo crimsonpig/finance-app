@@ -10,27 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BUDGET_ITEMS")
+@Table(name = "`BUDGET_ITEMS`")
 public class BudgetItemEntity {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "`ID`")
 	private Long id;
 
-	@Column(name = "START_DATE")
+	@Column(name = "`START_DATE`")
 	private Date startDate;
 	
-	@Column(name = "END_DATE")
+	@Column(name = "`END_DATE`")
 	private Date endDate;
 	
-	@Column(name = "ITEM_TYPE")
+	@Column(name = "`ITEM_TYPE`")
 	private String itemType;
 	
-	@Column(name = "CATEGORY")
+	@Column(name = "`CATEGORY`")
 	private String category;
 	
-	@Column(name = "AMOUNT")
+	@Column(name = "`AMOUNT`")
 	private BigDecimal amount;
 	
 	public BudgetItemEntity(){}

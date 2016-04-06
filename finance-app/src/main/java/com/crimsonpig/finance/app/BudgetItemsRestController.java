@@ -34,6 +34,7 @@ public class BudgetItemsRestController {
 		sb.append(item.getEndDate());
 		sb.append(item.getItemType());
 		sb.append(item.getAmount());
+		sb.append("&nbsp;&nbsp;");
 		
 	}
 }
