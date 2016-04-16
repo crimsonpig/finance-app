@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.crimsonpig.finance.budget.*;
 import com.crimsonpig.finance.summary.CategorizedAmount;
@@ -21,11 +20,11 @@ public class DomainObjectDataLists {
 		LocalDate midStart = LocalDate.of(2016, 3, 16);
 		LocalDate end = LocalDate.of(2016, 3, 31);
 		
-		items.add(new BudgetItem("GAS", new BigDecimal(200), "E", start, end));
-		items.add(new BudgetItem("HOUSEHOLD", new BigDecimal(200), "E", start, end));
-		items.add(new BudgetItem("FOOD", new BigDecimal(350), "E", start, end));
-		items.add(new BudgetItem("PAYCHECK", new BigDecimal(2050), "I", start, midEnd));
-		items.add(new BudgetItem("PAYCHECK", new BigDecimal(2050), "I", midStart, end));
+		items.add(new BudgetItem(1L, "GAS", new BigDecimal(200), "E", start, end));
+		items.add(new BudgetItem(2L, "HOUSEHOLD", new BigDecimal(200), "E", start, end));
+		items.add(new BudgetItem(3L, "FOOD", new BigDecimal(350), "E", start, end));
+		items.add(new BudgetItem(4L, "PAYCHECK", new BigDecimal(2050), "I", start, midEnd));
+		items.add(new BudgetItem(5L, "PAYCHECK", new BigDecimal(2050), "I", midStart, end));
 		
 		return items;
 	}

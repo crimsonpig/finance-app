@@ -32,7 +32,7 @@ public class BudgetItemsRestController {
 		List<BudgetItemEntity> entities = budgetItemsDao.findAll(findBudgetItems(LocalDate.parse(startDt), LocalDate.parse(endDt), category));
 
 		List<BudgetItem> budgetItems = entities.stream().map(entity -> {
-			BudgetItem item = new BudgetItem(entity.getCategory(), entity.getAmount(), entity.getItemType(), entity.getStartDate().toLocalDate(), entity.getEndDate().toLocalDate());
+			BudgetItem item = new BudgetItem(entity.getId(), entity.getCategory(), entity.getAmount(), entity.getItemType(), entity.getStartDate().toLocalDate(), entity.getEndDate().toLocalDate());
 			return item;
 		}).collect(Collectors.toList());
 		

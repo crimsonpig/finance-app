@@ -7,20 +7,29 @@ public class BudgetItem {
 
 	private enum ItemType { I, E }
 	
-	private final String category;
-	private final BigDecimal amount;
-	private final ItemType itemType;
-	private final LocalDate startDate;
-	private final LocalDate endDate;
+	private Long id;
+	private String category;
+	private BigDecimal amount;
+	private ItemType itemType;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	
-	public BudgetItem(String category, BigDecimal amount, String itemType, LocalDate startDate, LocalDate endDate) {
+	public BudgetItem(Long id, String category, BigDecimal amount, String itemType, LocalDate startDate, LocalDate endDate) {
+		this.id = id;
 		this.category = category;
 		this.amount = amount;
 		this.itemType = ItemType.valueOf(itemType);
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
+	
+	protected BudgetItem(){
+	}
 
+	public Long getId(){
+		return id;
+	}
+	
 	public String getCategory() {
 		return category;
 	}
