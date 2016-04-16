@@ -29,8 +29,8 @@ public class BudgetItemsRestController {
 		
 		StringBuilder sb = new StringBuilder();
 		
-//		budgetItemsDao.findAll(findBudgetItems(LocalDate.parse(startDt), LocalDate.parse(endDt), category)).forEach(item -> populate(sb,item));
-		budgetItemsDao.findByStartAndEndDates(Date.valueOf(startDt), Date.valueOf(endDt)).forEach(item -> populate(sb,item));
+		budgetItemsDao.findAll(findBudgetItems(LocalDate.parse(startDt), LocalDate.parse(endDt), category)).forEach(item -> populate(sb,item));
+//		budgetItemsDao.findByStartAndEndDates(Date.valueOf(startDt), Date.valueOf(endDt)).forEach(item -> populate(sb,item));
 		
 		return sb.toString();
 	}

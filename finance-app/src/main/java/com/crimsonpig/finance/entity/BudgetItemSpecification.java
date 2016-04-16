@@ -20,12 +20,12 @@ public class BudgetItemSpecification {
 
 			public Predicate toPredicate(Root<BudgetItemEntity> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				
-				Predicate startDatePredicate = builder.lessThanOrEqualTo(root.get(BudgetItemEntity_.startDate), Date.valueOf(endDate));
-				Predicate endDatePredicate = builder.greaterThanOrEqualTo(root.get(BudgetItemEntity_.endDate), Date.valueOf(startDate));
+				Predicate startDatePredicate = builder.lessThanOrEqualTo(root.get("startDate"), Date.valueOf(endDate));
+				Predicate endDatePredicate = builder.greaterThanOrEqualTo(root.get("endDate"), Date.valueOf(startDate));
 				if(category == null){
 					return builder.and(startDatePredicate, endDatePredicate);
 				} else {
-				Predicate categoryPredicate = builder.equal(root.get(BudgetItemEntity_.category), category);
+				Predicate categoryPredicate = builder.equal(root.get("category"), category);
 					return builder.and(startDatePredicate, endDatePredicate, categoryPredicate);
 				}
 			}
