@@ -15,12 +15,19 @@ public class BudgetItemSpecification {
 //    .filter(_.startDate <= params.endDt)
 //    .filter(_.endDate >= params.startDt))
 
-	public static Specification<BudgetItemEntity> findByDates(LocalDate startDate, LocalDate endDate){
+	public static Specification<BudgetItemEntity> findBudgetItems(LocalDate startDate, LocalDate endDate, String category){
 		return new Specification<BudgetItemEntity>(){
 
 			public Predicate toPredicate(Root<BudgetItemEntity> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-				return builder.and(builder.lessThanOrEqualTo(root.get(BudgetItemEntity_.startDate), Date.valueOf(endDate)), 
-						builder.greaterThanOrEqualTo(root.get(BudgetItemEntity_.endDate), Date.valueOf(startDate)));
+				
+				Predicate startDatePredicate = builder.lessThanOrEqualTo(root.get(BudgetItemEntity_.startDate), Date.valueOf(endDate));
+				Predicate endDatePredicate = builder.greaterThanOrEqualTo(root.get(BudgetItemEntity_.endDate), Date.valueOf(startDate));
+				if(category == null){
+					return builder.and(startDatePredicate, endDatePredicate);
+				} else {
+				Predicate categoryPredicate = builder.equal(root.get(BudgetItemEntity_.category), category);
+					return builder.and(startDatePredicate, endDatePredicate, categoryPredicate);
+				}
 			}
 			
 		};

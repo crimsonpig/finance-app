@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crimsonpig.finance.entity.BudgetItemEntity;
 import com.crimsonpig.finance.repository.BudgetItemsJpaRepository;
 
-import static com.crimsonpig.finance.entity.BudgetItemSpecification.findByDates;
+import static com.crimsonpig.finance.entity.BudgetItemSpecification.findBudgetItems;
 
 @RestController
 public class BudgetItemsRestController {
@@ -28,7 +28,7 @@ public class BudgetItemsRestController {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		budgetItemsDao.findAll(findByDates(LocalDate.parse(startDt), LocalDate.parse(endDt))).forEach(item -> populate(sb,item));
+		budgetItemsDao.findAll(findBudgetItems(LocalDate.parse(startDt), LocalDate.parse(endDt), category)).forEach(item -> populate(sb,item));
 		
 		return sb.toString();
 	}
