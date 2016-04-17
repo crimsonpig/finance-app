@@ -3,14 +3,18 @@ package com.crimsonpig.finance.transaction;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Transaction {
 
 	private Long tid;
 	
 	private String category;
 	
+	@JsonProperty("tDate")
 	private LocalDate tDate;
 	
+	@JsonProperty("tType")
 	private String tType;
 	
 	private BigDecimal amount;
@@ -33,10 +37,12 @@ public class Transaction {
 		return category;
 	}
 
+	@JsonProperty("tDate")
 	public LocalDate getTDate() {
 		return tDate;
 	}
 
+	@JsonProperty("tType")
 	public String getTType() {
 		return tType;
 	}

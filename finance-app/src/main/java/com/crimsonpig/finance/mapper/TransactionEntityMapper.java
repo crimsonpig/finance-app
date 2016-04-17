@@ -10,7 +10,7 @@ public class TransactionEntityMapper {
 	public Transaction mapFromEntity(TransactionEntity entity){
 		return new Transaction(
 				entity.getTid(),
-				entity.getCategory(), 
+				entity.getCategory().toUpperCase(), 
 				entity.getTDate().toLocalDate(), 
 				entity.getTType(), 
 				entity.getAmount()
@@ -20,7 +20,7 @@ public class TransactionEntityMapper {
 	public TransactionEntity mapToEntity(Transaction t){
 		TransactionEntity entity = new TransactionEntity();
 		entity.setTid(t.getTid());
-		entity.setCategory(t.getCategory());
+		entity.setCategory(t.getCategory().toUpperCase());
 		entity.setAmount(t.getAmount());
 		entity.setTType(t.getTType());
 		entity.setTDate(Date.valueOf(t.getTDate()));

@@ -7,7 +7,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,4 +49,23 @@ public class TransactionsRestController {
 		
 		return transactions;
 	}
+	
+	@RequestMapping(path = "/transactions", method = POST)
+	public Transaction saveTransaction(@RequestBody Transaction transaction, HttpServletResponse response){
+		TransactionEntity entity = mapper.mapToEntity(transaction);
+		TransactionEntity savedEntity = transactionsDao.save(entity);
+		Transaction persistedTransaction = mapper.mapFromEntity(savedEntity);
+		response.setStatus(HttpServletResponse.SC_CREATED);
+		return persistedTransaction;
+	}
+	
+	@RequestMapping(path = "/transactions/{tid}", method = DELETE)
+	public Transaction deleteTransaction(@PathVariable String tid){
+		Long tidValue = Long.parseLong(tid);
+		TransactionEntity entity = transactionsDao.findOne(tidValue);
+		Transaction deletedTransaction = mapper.mapFromEntity(entity);
+		transactionsDao.delete(tidValue);
+		return deletedTransaction;
+	}
+	
 }
