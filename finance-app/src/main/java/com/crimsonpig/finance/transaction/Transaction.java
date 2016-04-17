@@ -4,23 +4,23 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Transaction {
+
+	private String category;
 	
-	private enum TType {E, I}
+	private LocalDate tDate;
 	
-	private final String category;
+	private String tType;
 	
-	private final LocalDate tDate;
-	
-	private final TType tType;
-	
-	private final BigDecimal amount;
+	private BigDecimal amount;
 
 	public Transaction(String category, LocalDate tDate, String tType, BigDecimal amount) {
 		this.category = category;
 		this.tDate = tDate;
-		this.tType = TType.valueOf(tType);
+		this.tType = tType;
 		this.amount = amount;
 	}
+	
+	protected Transaction(){}
 
 	public String getCategory() {
 		return category;
@@ -31,7 +31,7 @@ public class Transaction {
 	}
 
 	public String getTType() {
-		return tType.toString();
+		return tType;
 	}
 
 	public BigDecimal getAmount() {

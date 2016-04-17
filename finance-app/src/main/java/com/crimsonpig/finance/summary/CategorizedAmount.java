@@ -4,14 +4,16 @@ import java.math.BigDecimal;
 
 public class CategorizedAmount {
 
-	private final String category;
+	private String category;
 	
-	private final BigDecimal amount;
+	private BigDecimal amount;
 
 	public CategorizedAmount(String category, BigDecimal amount) {
 		this.category = category;
 		this.amount = amount;
 	}
+	
+	protected CategorizedAmount(){}
 
 	public String getCategory() {
 		return category;
