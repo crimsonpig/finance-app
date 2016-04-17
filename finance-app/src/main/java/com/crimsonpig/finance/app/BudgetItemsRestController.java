@@ -1,12 +1,14 @@
 package com.crimsonpig.finance.app;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +47,16 @@ public class BudgetItemsRestController {
 				.collect(Collectors.toList());
 		
 		return budgetItems;
+	}
+	
+	@RequestMapping(path = "/budget", method = POST)
+	public BudgetItem saveBudgetItem(@RequestBody BudgetItem item){
+		
+		BudgetItemEntity entity = mapper.mapToEntity(item);
+		BudgetItemEntity savedEntity = budgetItemsDao.save(entity);
+		BudgetItem persistedItem = mapper.mapFromEntity(savedEntity);
+		
+		return persistedItem;
 	}
 
 }

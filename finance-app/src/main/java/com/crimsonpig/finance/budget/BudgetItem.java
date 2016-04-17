@@ -5,12 +5,10 @@ import java.time.LocalDate;
 
 public class BudgetItem {
 
-	private enum ItemType { I, E }
-	
 	private Long id;
 	private String category;
 	private BigDecimal amount;
-	private ItemType itemType;
+	private String itemType;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	
@@ -18,7 +16,7 @@ public class BudgetItem {
 		this.id = id;
 		this.category = category;
 		this.amount = amount;
-		this.itemType = ItemType.valueOf(itemType);
+		this.itemType = itemType;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
@@ -39,7 +37,7 @@ public class BudgetItem {
 	}
 
 	public String getItemType() {
-		return itemType.toString();
+		return itemType;
 	}
 
 	public LocalDate getStartDate() {
@@ -48,6 +46,30 @@ public class BudgetItem {
 
 	public LocalDate getEndDate() {
 		return endDate;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 	
 	
