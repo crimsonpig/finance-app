@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 public class Transaction {
 
+	private Long id;
+	
 	private String category;
 	
 	private LocalDate tDate;
@@ -13,7 +15,8 @@ public class Transaction {
 	
 	private BigDecimal amount;
 
-	public Transaction(String category, LocalDate tDate, String tType, BigDecimal amount) {
+	public Transaction(Long id, String category, LocalDate tDate, String tType, BigDecimal amount) {
+		this.id = id;
 		this.category = category;
 		this.tDate = tDate;
 		this.tType = tType;
@@ -22,6 +25,10 @@ public class Transaction {
 	
 	protected Transaction(){}
 
+	public Long getId(){
+		return id;
+	}
+	
 	public String getCategory() {
 		return category;
 	}
