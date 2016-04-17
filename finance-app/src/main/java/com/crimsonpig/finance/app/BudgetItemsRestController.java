@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,6 +59,15 @@ public class BudgetItemsRestController {
 		BudgetItem persistedItem = mapper.mapFromEntity(savedEntity);
 		
 		return persistedItem;
+	}
+	
+	@RequestMapping(path = "/budget/{id}")
+	public BudgetItem deleteBudgetItem(@PathVariable String id){
+		Long idValue = Long.parseLong(id);
+		BudgetItemEntity entity = budgetItemsDao.findOne(idValue);
+		BudgetItem deletedItem = mapper.mapFromEntity(entity);
+		budgetItemsDao.delete(idValue);
+		return deletedItem;
 	}
 
 }
