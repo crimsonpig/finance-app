@@ -7,8 +7,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,12 +53,12 @@ public class BudgetItemsRestController {
 	}
 	
 	@RequestMapping(path = "/budget", method = POST)
-	public BudgetItem saveBudgetItem(@RequestBody BudgetItem item){
+	public BudgetItem saveBudgetItem(@RequestBody BudgetItem item, HttpServletResponse response){
 		
 		BudgetItemEntity entity = mapper.mapToEntity(item);
 		BudgetItemEntity savedEntity = budgetItemsDao.save(entity);
 		BudgetItem persistedItem = mapper.mapFromEntity(savedEntity);
-		
+		response.setStatus(HttpServletResponse.SC_CREATED);
 		return persistedItem;
 	}
 	
