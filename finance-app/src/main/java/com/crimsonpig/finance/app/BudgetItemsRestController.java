@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crimsonpig.finance.budget.BudgetItem;
 import com.crimsonpig.finance.entity.BudgetItemEntity;
+import com.crimsonpig.finance.mapper.BudgetItemEntityMapper;
 import com.crimsonpig.finance.repository.BudgetItemsJpaRepository;
 
 import static com.crimsonpig.finance.entity.BudgetItemSpecification.findBudgetItems;
@@ -23,18 +24,25 @@ public class BudgetItemsRestController {
 	@Autowired
 	private BudgetItemsJpaRepository budgetItemsDao;
 	
+	private BudgetItemEntityMapper mapper;
+	
+	public BudgetItemsRestController(){
+		mapper = new BudgetItemEntityMapper();
+	}
+	
 	@RequestMapping(path = "/budget", method = GET)
 	public List<BudgetItem> retrieveBudgetItems(
 			@RequestParam(name = "startDt", required = true) String startDt, 
 			@RequestParam(name = "endDt", required = true) String endDt, 
 			@RequestParam(name = "category", required = false) String category){
 
-		List<BudgetItemEntity> entities = budgetItemsDao.findAll(findBudgetItems(LocalDate.parse(startDt), LocalDate.parse(endDt), category));
+		List<BudgetItemEntity> entities = budgetItemsDao
+				.findAll(findBudgetItems(LocalDate.parse(startDt), LocalDate.parse(endDt), category));
 
-		List<BudgetItem> budgetItems = entities.stream().map(entity -> {
-			BudgetItem item = new BudgetItem(entity.getId(), entity.getCategory(), entity.getAmount(), entity.getItemType(), entity.getStartDate().toLocalDate(), entity.getEndDate().toLocalDate());
-			return item;
-		}).collect(Collectors.toList());
+		List<BudgetItem> budgetItems = entities
+				.stream()
+				.map(entity -> mapper.mapFromEntity(entity))
+				.collect(Collectors.toList());
 		
 		return budgetItems;
 	}
