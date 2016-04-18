@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.crimsonpig.finance.budget.BudgetItem;
 import com.crimsonpig.finance.summary.CategorizedAmount;
 import com.crimsonpig.finance.summary.SummaryResponse;
 import com.crimsonpig.finance.transaction.Transaction;
