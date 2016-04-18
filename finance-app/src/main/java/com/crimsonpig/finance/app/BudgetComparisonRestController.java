@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crimsonpig.finance.budget.BudgetItem;
-import com.crimsonpig.finance.budget.ComparisonResponse;
+import com.crimsonpig.finance.domain.BudgetItem;
+import com.crimsonpig.finance.domain.ComparisonResponse;
+import com.crimsonpig.finance.domain.SummaryResponse;
 import com.crimsonpig.finance.service.BudgetComparisonSummaryService;
 import com.crimsonpig.finance.service.RetrieveActualItemsService;
 import com.crimsonpig.finance.service.RetrieveBudgetItemsService;
-import com.crimsonpig.finance.summary.SummaryResponse;
 
 @RestController
 public class BudgetComparisonRestController {

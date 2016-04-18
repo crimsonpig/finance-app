@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.crimsonpig.finance.summary.CategorizedAmount;
-import com.crimsonpig.finance.summary.SummaryResponse;
-import com.crimsonpig.finance.transaction.Transaction;
+import com.crimsonpig.finance.domain.CategorizedAmount;
+import com.crimsonpig.finance.domain.SummaryResponse;
+import com.crimsonpig.finance.domain.Transaction;
 
 public class TransactionSummaryService {
 

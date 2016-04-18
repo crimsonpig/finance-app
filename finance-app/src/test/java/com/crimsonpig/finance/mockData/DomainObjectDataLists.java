@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.crimsonpig.finance.budget.*;
-import com.crimsonpig.finance.summary.CategorizedAmount;
-import com.crimsonpig.finance.summary.SummaryResponse;
-import com.crimsonpig.finance.transaction.Transaction;
+import com.crimsonpig.finance.domain.BudgetItem;
+import com.crimsonpig.finance.domain.CategorizedAmount;
+import com.crimsonpig.finance.domain.SummaryResponse;
+import com.crimsonpig.finance.domain.Transaction;
 
 public class DomainObjectDataLists {
 

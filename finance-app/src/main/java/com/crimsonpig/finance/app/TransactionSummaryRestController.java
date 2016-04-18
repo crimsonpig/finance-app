@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.crimsonpig.finance.domain.SummaryResponse;
+import com.crimsonpig.finance.domain.Transaction;
 import com.crimsonpig.finance.entity.TransactionEntity;
 import com.crimsonpig.finance.mapper.TransactionEntityMapper;
 import com.crimsonpig.finance.repository.TransactionsJpaRepository;
 import com.crimsonpig.finance.service.TransactionSummaryService;
-import com.crimsonpig.finance.summary.SummaryResponse;
-import com.crimsonpig.finance.transaction.Transaction;
 
 @RestController
 public class TransactionSummaryRestController {

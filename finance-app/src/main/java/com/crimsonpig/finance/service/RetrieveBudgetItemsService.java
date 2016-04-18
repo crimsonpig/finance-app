@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
-import com.crimsonpig.finance.budget.BudgetItem;
+import com.crimsonpig.finance.domain.BudgetItem;
 
 public class RetrieveBudgetItemsService {
 	

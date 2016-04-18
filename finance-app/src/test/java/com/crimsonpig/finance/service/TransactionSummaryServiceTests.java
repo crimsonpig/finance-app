@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.crimsonpig.finance.domain.CategorizedAmount;
+import com.crimsonpig.finance.domain.SummaryResponse;
+import com.crimsonpig.finance.domain.Transaction;
 import com.crimsonpig.finance.mockData.DomainObjectDataLists;
-import com.crimsonpig.finance.summary.CategorizedAmount;
-import com.crimsonpig.finance.summary.SummaryResponse;
-import com.crimsonpig.finance.transaction.Transaction;
 
 public class TransactionSummaryServiceTests {
 

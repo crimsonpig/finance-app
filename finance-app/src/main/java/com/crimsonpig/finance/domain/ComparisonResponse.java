@@ -1,4 +1,4 @@
-package com.crimsonpig.finance.budget;
+package com.crimsonpig.finance.domain;
 
 import java.math.BigDecimal;
 import java.util.List;

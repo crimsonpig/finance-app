@@ -2,7 +2,7 @@ package com.crimsonpig.finance.mapper;
 
 import java.sql.Date;
 
-import com.crimsonpig.finance.budget.BudgetItem;
+import com.crimsonpig.finance.domain.BudgetItem;
 import com.crimsonpig.finance.entity.BudgetItemEntity;
 
 public class BudgetItemEntityMapper {

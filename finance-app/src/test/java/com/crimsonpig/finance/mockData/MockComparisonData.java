@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.crimsonpig.finance.budget.CompareRecord;
-import com.crimsonpig.finance.budget.ComparisonResponse;
+import com.crimsonpig.finance.domain.CompareRecord;
+import com.crimsonpig.finance.domain.ComparisonResponse;
 
 public class MockComparisonData {
 

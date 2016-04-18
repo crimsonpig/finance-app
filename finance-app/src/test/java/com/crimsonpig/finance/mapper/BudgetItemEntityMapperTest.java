@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-import com.crimsonpig.finance.budget.BudgetItem;
+import com.crimsonpig.finance.domain.BudgetItem;
 import com.crimsonpig.finance.entity.BudgetItemEntity;
 
 public class BudgetItemEntityMapperTest {

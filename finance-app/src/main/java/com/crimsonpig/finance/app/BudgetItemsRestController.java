@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crimsonpig.finance.budget.BudgetItem;
+import com.crimsonpig.finance.domain.BudgetItem;
 import com.crimsonpig.finance.entity.BudgetItemEntity;
 import com.crimsonpig.finance.mapper.BudgetItemEntityMapper;
 import com.crimsonpig.finance.repository.BudgetItemsJpaRepository;

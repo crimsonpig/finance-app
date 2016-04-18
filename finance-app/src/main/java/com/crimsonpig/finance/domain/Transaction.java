@@ -1,4 +1,4 @@
-package com.crimsonpig.finance.transaction;
+package com.crimsonpig.finance.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

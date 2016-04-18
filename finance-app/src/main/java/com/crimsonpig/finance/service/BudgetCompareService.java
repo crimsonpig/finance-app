@@ -6,8 +6,8 @@ import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.crimsonpig.finance.budget.CompareRecord;
-import com.crimsonpig.finance.summary.CategorizedAmount;
+import com.crimsonpig.finance.domain.CategorizedAmount;
+import com.crimsonpig.finance.domain.CompareRecord;
 
 public class BudgetCompareService {
 

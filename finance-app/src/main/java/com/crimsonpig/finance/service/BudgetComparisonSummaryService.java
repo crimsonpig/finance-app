@@ -2,11 +2,11 @@ package com.crimsonpig.finance.service;
 
 import java.util.List;
 
-import com.crimsonpig.finance.budget.CompareRecord;
-import com.crimsonpig.finance.budget.ComparisonResponse;
-import com.crimsonpig.finance.budget.BudgetItem;
-import com.crimsonpig.finance.summary.CategorizedAmount;
-import com.crimsonpig.finance.summary.SummaryResponse;
+import com.crimsonpig.finance.domain.BudgetItem;
+import com.crimsonpig.finance.domain.CategorizedAmount;
+import com.crimsonpig.finance.domain.CompareRecord;
+import com.crimsonpig.finance.domain.ComparisonResponse;
+import com.crimsonpig.finance.domain.SummaryResponse;
 
 public class BudgetComparisonSummaryService {
 

@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.crimsonpig.finance.budget.BudgetItem;
-import com.crimsonpig.finance.budget.CompareRecord;
+import com.crimsonpig.finance.domain.BudgetItem;
+import com.crimsonpig.finance.domain.CategorizedAmount;
+import com.crimsonpig.finance.domain.CompareRecord;
 import com.crimsonpig.finance.mockData.DomainObjectDataLists;
-import com.crimsonpig.finance.summary.CategorizedAmount;
 
 public class BudgetCompareServiceTests {
 

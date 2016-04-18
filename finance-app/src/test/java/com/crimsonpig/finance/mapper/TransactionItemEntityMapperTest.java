@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
+import com.crimsonpig.finance.domain.Transaction;
 import com.crimsonpig.finance.entity.TransactionEntity;
-import com.crimsonpig.finance.transaction.Transaction;
 
 public class TransactionItemEntityMapperTest {
 

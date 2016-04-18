@@ -2,8 +2,8 @@ package com.crimsonpig.finance.mapper;
 
 import java.sql.Date;
 
+import com.crimsonpig.finance.domain.Transaction;
 import com.crimsonpig.finance.entity.TransactionEntity;
-import com.crimsonpig.finance.transaction.Transaction;
 
 public class TransactionEntityMapper {
 

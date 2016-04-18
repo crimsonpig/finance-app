@@ -2,7 +2,7 @@ package com.crimsonpig.finance.service;
 
 import org.springframework.web.client.RestTemplate;
 
-import com.crimsonpig.finance.summary.SummaryResponse;
+import com.crimsonpig.finance.domain.SummaryResponse;
 
 public class RetrieveActualItemsService {
 
