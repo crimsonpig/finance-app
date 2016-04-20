@@ -18,8 +18,11 @@ public class RetrieveActualItemsService {
 		restTemplate = new RestTemplate();
 	}
 	
-	public SummaryResponse retrieveTransactionSummary(String startDt, String endDt){
+	public SummaryResponse retrieveTransactionSummary(String startDt, String endDt, String category){
 		String transactionSummaryUrl = String.format(URL_TEMPLATE, startDt, endDt);
+		if(category != null){
+			transactionSummaryUrl += "&category=" + category;
+		}
 		SummaryResponse transactionSummary = restTemplate.getForObject(transactionSummaryUrl, SummaryResponse.class);
 		return transactionSummary;
 	}

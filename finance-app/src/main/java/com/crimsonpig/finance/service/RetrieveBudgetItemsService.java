@@ -25,10 +25,12 @@ public class RetrieveBudgetItemsService {
 		restTemplate = new RestTemplate();
 	}
 	
-	public List<BudgetItem> retrieveBudgetItems(String startDt, String endDt){
+	public List<BudgetItem> retrieveBudgetItems(String startDt, String endDt, String category){
 
 		String budgetUrl = String.format(URL_TEMPLATE, startDt, endDt);
-
+		if(category != null){
+			budgetUrl += "&category=" + category;
+		}
 		BudgetItem[] budgetItems = restTemplate.getForObject(budgetUrl, BudgetItem[].class);
 
 		return Arrays.asList(budgetItems);

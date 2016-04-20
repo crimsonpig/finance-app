@@ -34,10 +34,11 @@ public class BudgetComparisonRestController {
 	@RequestMapping(path = "/budget/comparison", method = GET)
 	public ComparisonResponse comparison(
 			@RequestParam(name = "startDt", required = true) String startDt, 
-			@RequestParam(name = "endDt", required = true) String endDt){
+			@RequestParam(name = "endDt", required = true) String endDt, 
+			@RequestParam(name = "category", required = false) String category){
 
-		List<BudgetItem> budgeted = retrieveBudgetItems.retrieveBudgetItems(startDt, endDt);
-		SummaryResponse summary = retrieveActualItems.retrieveTransactionSummary(startDt, endDt);
+		List<BudgetItem> budgeted = retrieveBudgetItems.retrieveBudgetItems(startDt, endDt, category);
+		SummaryResponse summary = retrieveActualItems.retrieveTransactionSummary(startDt, endDt, category);
 
 		ComparisonResponse response = comparisonService.compareBudgetWithActual(budgeted, summary);
 		
