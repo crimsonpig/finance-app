@@ -2,6 +2,7 @@ package com.crimsonpig.finance.app;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,6 +16,7 @@ import com.crimsonpig.finance.service.BudgetComparisonSummaryService;
 import com.crimsonpig.finance.service.RetrieveActualItemsService;
 import com.crimsonpig.finance.service.RetrieveBudgetItemsService;
 
+@CrossOrigin
 @RestController
 public class BudgetComparisonRestController {
 
