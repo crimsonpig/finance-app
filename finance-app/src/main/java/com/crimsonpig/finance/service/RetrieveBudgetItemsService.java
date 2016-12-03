@@ -5,19 +5,19 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.crimsonpig.finance.domain.BudgetItem;
 
+@Component
 public class RetrieveBudgetItemsService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RetrieveBudgetItemsService.class);
 
-	private static final String HOST = "localhost:8082";
-	
-	private static final String PATH = HOST + "/budget";
-	
-	private static final String URL_TEMPLATE = "http://" + PATH + "?startDt=%s&endDt=%s";
+	@Value("${finance.comparison.budgetitems.path}")
+	private String path;
 	
 	private RestTemplate restTemplate;
 
@@ -26,8 +26,8 @@ public class RetrieveBudgetItemsService {
 	}
 	
 	public List<BudgetItem> retrieveBudgetItems(String startDt, String endDt, String category){
-
-		String budgetUrl = String.format(URL_TEMPLATE, startDt, endDt);
+		String urlTemplate = path + "?startDt=%s&endDt=%s";
+		String budgetUrl = String.format(urlTemplate, startDt, endDt);
 		if(category != null){
 			budgetUrl += "&category=" + category;
 		}
