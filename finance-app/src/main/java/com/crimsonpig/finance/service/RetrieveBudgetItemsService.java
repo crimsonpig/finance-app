@@ -13,7 +13,7 @@ public class RetrieveBudgetItemsService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RetrieveBudgetItemsService.class);
 
-	private static final String HOST = "linuxbox";
+	private static final String HOST = "localhost:8082";
 	
 	private static final String PATH = HOST + "/budget";
 	

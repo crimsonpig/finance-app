@@ -6,7 +6,7 @@ import com.crimsonpig.finance.domain.SummaryResponse;
 
 public class RetrieveActualItemsService {
 
-	private static final String HOST = "linuxbox";
+	private static final String HOST = "localhost:8082";
 	
 	private static final String PATH = HOST + "/reports/transactions";
 	
