@@ -31,7 +31,7 @@ public class BudgetComparisonRestController {
 		comparisonService = new BudgetComparisonSummaryService();
 	}
 	
-	@RequestMapping(path = "/budget/comparison", method = GET)
+	@RequestMapping(path = "/comparison", method = GET)
 	public ComparisonResponse comparison(
 			@RequestParam(name = "startDt", required = true) String startDt, 
 			@RequestParam(name = "endDt", required = true) String endDt, 
