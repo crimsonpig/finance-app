@@ -22,7 +22,7 @@ public class TransactionItemEntityMapperTest {
 		assertEquals(expected.getTid(), t.getTid());
 		assertEquals(expected.getCategory(), t.getCategory());
 		assertEquals(expected.getAmount(), t.getAmount());
-		assertEquals(expected.getTType(), t.getTType());
+		assertEquals(expected.gettType(), t.gettType());
 		assertEquals(expected.getTDate(), t.getTDate());
 	}
 	

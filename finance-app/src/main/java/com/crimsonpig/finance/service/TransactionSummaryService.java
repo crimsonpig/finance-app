@@ -30,7 +30,7 @@ public class TransactionSummaryService {
 	private Stream<String> getCategoriesStream(String type, List<Transaction> transactions){
 		return transactions
 				.stream()
-				.filter(item -> type.equals(item.getTType()))
+				.filter(item -> type.equals(item.gettType()))
 				.map(item -> item.getCategory())
 				.distinct()
 				.parallel();

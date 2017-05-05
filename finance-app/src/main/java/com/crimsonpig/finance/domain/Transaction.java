@@ -13,8 +13,7 @@ public class Transaction {
 	
 	@JsonProperty("tDate")
 	private LocalDate tDate;
-	
-	@JsonProperty("tType")
+
 	private String tType;
 	
 	private BigDecimal amount;
@@ -42,8 +41,7 @@ public class Transaction {
 		return tDate;
 	}
 
-	@JsonProperty("tType")
-	public String getTType() {
+	public String gettType() {
 		return tType;
 	}
 
