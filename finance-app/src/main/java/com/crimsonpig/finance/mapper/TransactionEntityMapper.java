@@ -23,7 +23,7 @@ public class TransactionEntityMapper {
 		entity.setCategory(t.getCategory().toUpperCase());
 		entity.setAmount(t.getAmount());
 		entity.setTType(t.gettType());
-		entity.setTDate(Date.valueOf(t.getTDate()));
+		entity.setTDate(Date.valueOf(t.gettDate()));
 		return entity;
 	}
 }
