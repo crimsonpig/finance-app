@@ -12,6 +12,7 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<jackson.version>2.6.5</jackson.version>
+		<finance.domain.version>1.0.0-SNAPSHOT</finance.domain.version>
 	</properties>
 
 	<parent>
@@ -21,6 +22,12 @@
 	</parent>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.crimsonpig.finance</groupId>
+			<artifactId>finance-domain</artifactId>
+			<version>${finance.domain.version}</version>
+		</dependency>
+	
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
