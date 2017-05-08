@@ -1,9 +1,0 @@
-[Unit]
-Description=finance-budgetitems
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/java -jar /opt/finance-budgetitems.jar
-
-[Install]
-WantedBy=multi-user.target

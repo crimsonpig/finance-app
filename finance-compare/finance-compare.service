@@ -1,9 +1,0 @@
-[Unit]
-Description=finance-compare
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/java -jar /opt/finance-compare.jar
-
-[Install]
-WantedBy=multi-user.target

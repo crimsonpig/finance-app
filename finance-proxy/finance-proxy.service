@@ -1,9 +1,0 @@
-[Unit]
-Description=finance-proxy
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/java -jar /opt/finance-proxy.jar
-
-[Install]
-WantedBy=multi-user.target
