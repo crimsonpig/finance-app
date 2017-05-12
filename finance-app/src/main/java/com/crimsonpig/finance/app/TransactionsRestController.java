@@ -34,7 +34,7 @@ public class TransactionsRestController {
 	}
 	
 	@RequestMapping(path = "/transactions", method = GET)
-	public List<Transaction> retrieveBudgetItems(
+	public List<Transaction> retrieveTransactions(
 			@RequestParam(name = "startDt", required = true) String startDt, 
 			@RequestParam(name = "endDt", required = true) String endDt, 
 			@RequestParam(name = "category", required = false) String category){
