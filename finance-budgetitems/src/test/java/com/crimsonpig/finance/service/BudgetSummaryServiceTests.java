@@ -17,16 +17,17 @@ import com.crimsonpig.finance.mockData.DomainObjectDataLists;
 
 public class BudgetSummaryServiceTests {
 
-	private List<BudgetItem> budgetItems;
+	private BudgetSummaryService summaryService;
 	
 	@Before
 	public void setUp(){
-		budgetItems = new DomainObjectDataLists().getBudgetItems();
+		summaryService = new BudgetSummaryService();
 	}
 	
 	@Test
 	public void testConvertIncomeItemsToSummary(){
-		SummaryResponse response = new BudgetSummaryService().buildBudgetSummary(budgetItems);
+		List<BudgetItem> budgetItems = DomainObjectDataLists.getBudgetItems();
+		SummaryResponse response = summaryService.buildBudgetSummary(budgetItems);
 		assertEquals(1, response.getIncomes().size());
 		CategorizedAmount incomeItem = response.getIncomes().get(0);
 		assertEquals("PAYCHECK", incomeItem.getCategory());
@@ -35,6 +36,7 @@ public class BudgetSummaryServiceTests {
 	
 	@Test
 	public void testTotals(){
+		List<BudgetItem> budgetItems = DomainObjectDataLists.getBudgetItems();
 		SummaryResponse response = new BudgetSummaryService().buildBudgetSummary(budgetItems);
 		assertEquals(new BigDecimal(750), response.getExpensesTotal());
 		assertEquals(new BigDecimal(4100), response.getIncomesTotal());
@@ -43,6 +45,7 @@ public class BudgetSummaryServiceTests {
 	
 	@Test
 	public void testConvertExpenseItemsToSummary(){
+		List<BudgetItem> budgetItems = DomainObjectDataLists.getBudgetItems();
 		SummaryResponse response = new BudgetSummaryService().buildBudgetSummary(budgetItems);
 		assertEquals(3, response.getExpenses().size());
 

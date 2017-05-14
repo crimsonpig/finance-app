@@ -9,7 +9,7 @@ import com.crimsonpig.finance.domain.BudgetItem;
 
 public class DomainObjectDataLists {
 
-	public List<BudgetItem> getBudgetItems(){
+	public static List<BudgetItem> getBudgetItems(){
 		
 		List<BudgetItem> items = new ArrayList<BudgetItem>();
 		LocalDate start = LocalDate.of(2016, 3, 1);
