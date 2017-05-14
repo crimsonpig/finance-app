@@ -8,7 +8,6 @@ import java.util.List;
 import com.crimsonpig.finance.domain.BudgetItem;
 import com.crimsonpig.finance.domain.CategorizedAmount;
 import com.crimsonpig.finance.domain.SummaryResponse;
-import com.crimsonpig.finance.domain.Transaction;
 
 public class DomainObjectDataLists {
 
@@ -27,6 +26,20 @@ public class DomainObjectDataLists {
 		items.add(new BudgetItem(5L, "PAYCHECK", new BigDecimal(2050), "I", midStart, end));
 		
 		return items;
+	}
+	
+	public List<CategorizedAmount> getIncomeItemsSummary(){
+		List<CategorizedAmount> incomeItems = new ArrayList<CategorizedAmount>();
+		incomeItems.add(new CategorizedAmount("PAYCHECK", new BigDecimal(4100)));
+		return incomeItems;
+	}
+	
+	public List<CategorizedAmount> getExpenseItemsSummary(){
+		List<CategorizedAmount> expenseItems = new ArrayList<CategorizedAmount>();
+		expenseItems.add(new CategorizedAmount("GAS", new BigDecimal(200)));
+		expenseItems.add(new CategorizedAmount("FOOD", new BigDecimal(350)));
+		expenseItems.add(new CategorizedAmount("HOUSEHOLD", new BigDecimal(200)));
+		return expenseItems;
 	}
 	
 	public List<CategorizedAmount> getExpenseSummary(){
@@ -64,6 +77,13 @@ public class DomainObjectDataLists {
 		response.setExpenses(getExpenseSummary());
 		response.setIncomes(getIncomesSummary());
 		return response;
+	}
+	
+	public SummaryResponse getBudgetSummary(){
+		SummaryResponse response = new SummaryResponse();
+		response.setExpenses(getExpenseItemsSummary());
+		response.setIncomes(getIncomeItemsSummary());
+		return response;		
 	}
 	
 }

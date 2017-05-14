@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.crimsonpig.finance.domain.BudgetItem;
 import com.crimsonpig.finance.domain.CompareRecord;
 import com.crimsonpig.finance.domain.ComparisonResponse;
 import com.crimsonpig.finance.domain.SummaryResponse;
@@ -19,20 +18,20 @@ import com.crimsonpig.finance.mockData.DomainObjectDataLists;
 
 public class BudgetComparisonResponseTests {
 
-	private List<BudgetItem> budgetItems;
+	private SummaryResponse budgetItemsSummary;
 	private SummaryResponse transactionSummary;
 	
 	@Before
 	public void setUp(){
 		DomainObjectDataLists lists = new DomainObjectDataLists();
-		budgetItems = lists.getBudgetItems();
+		budgetItemsSummary = lists.getBudgetSummary();
 		transactionSummary = lists.getTransactionSummary();
 	}
 	
 	@Test
 	public void testTotals(){
 		ComparisonResponse response = new BudgetComparisonSummaryService()
-				.compareBudgetWithActual(budgetItems, transactionSummary);
+				.compareBudgetWithActual(budgetItemsSummary, transactionSummary);
 		
 		assertEquals(750, response.getExpectedExpenseTotal().doubleValue(), 0.001);
 		assertEquals(4100, response.getExpectedIncomeTotal().doubleValue(), 0.001);
@@ -47,7 +46,7 @@ public class BudgetComparisonResponseTests {
 	public void testIncomeComparison(){
 		
 		ComparisonResponse response = new BudgetComparisonSummaryService()
-				.compareBudgetWithActual(budgetItems, transactionSummary);
+				.compareBudgetWithActual(budgetItemsSummary, transactionSummary);
 		
 		List<CompareRecord> incomesComparison = response.getIncomes();
 		assertEquals(1, incomesComparison.size());
@@ -64,7 +63,7 @@ public class BudgetComparisonResponseTests {
 	public void testExpenseComparison(){
 		
 		ComparisonResponse response = new BudgetComparisonSummaryService()
-				.compareBudgetWithActual(budgetItems, transactionSummary);
+				.compareBudgetWithActual(budgetItemsSummary, transactionSummary);
 
 		List<CompareRecord> expensesComparison = response.getExpenses();
 		assertEquals(4, expensesComparison.size());
