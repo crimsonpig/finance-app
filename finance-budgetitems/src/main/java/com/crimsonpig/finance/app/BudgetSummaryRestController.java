@@ -17,6 +17,7 @@ import com.crimsonpig.finance.entity.BudgetItemEntity;
 import com.crimsonpig.finance.entity.BudgetItemSpecification;
 import com.crimsonpig.finance.mapper.BudgetItemEntityMapper;
 import com.crimsonpig.finance.repository.BudgetItemsJpaRepository;
+import com.crimsonpig.finance.service.BudgetItemAmountService;
 import com.crimsonpig.finance.service.BudgetSummaryService;
 
 @RestController
@@ -26,12 +27,15 @@ public class BudgetSummaryRestController {
 	private BudgetItemsJpaRepository budgetItemsDao;
 
 	private BudgetSummaryService summarizer;
+	
+	private BudgetItemAmountService amountAdjuster;
 
 	private BudgetItemEntityMapper mapper;
 
 	public BudgetSummaryRestController() {
 		summarizer = new BudgetSummaryService();
 		mapper = new BudgetItemEntityMapper();
+		amountAdjuster = new BudgetItemAmountService();
 	}
 
 	@RequestMapping(path = "/reports/budget", method = GET)
@@ -48,6 +52,7 @@ public class BudgetSummaryRestController {
 
 		List<BudgetItem> budgetItems = budgetItemEntities.stream()
 				.map(entity -> mapper.mapFromEntity(entity))
+				.map(budgetItem -> amountAdjuster.computeRelativeAmountByDateRange(budgetItem, startDate, endDate))
 				.collect(Collectors.toList());
 
 		SummaryResponse summary = summarizer.buildBudgetSummary(budgetItems);
