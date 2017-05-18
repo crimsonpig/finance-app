@@ -24,11 +24,12 @@ public class BudgetItemAmountService {
 	BigDecimal calculateAmountForDateRange(Integer budgetItemDays, Integer dateRangeDays,
 			BigDecimal totalAmount) {
 		BigDecimal amountInDateRange = totalAmount;
-		
-		double dateRangeRatio = dateRangeDays.doubleValue() / budgetItemDays.doubleValue();
-		if(dateRangeRatio < 1.0){
-			BigDecimal fractionalPercentage = new BigDecimal(dateRangeRatio).setScale(16, BigDecimal.ROUND_HALF_UP);
-			amountInDateRange = totalAmount.multiply(fractionalPercentage).setScale(2, BigDecimal.ROUND_HALF_UP);
+		if(!BigDecimal.ZERO.equals(totalAmount)){
+			double dateRangeRatio = dateRangeDays.doubleValue() / budgetItemDays.doubleValue();
+			if(dateRangeRatio < 1.0){
+				BigDecimal fractionalPercentage = new BigDecimal(dateRangeRatio).setScale(16, BigDecimal.ROUND_HALF_UP);
+				amountInDateRange = totalAmount.multiply(fractionalPercentage).setScale(2, BigDecimal.ROUND_HALF_UP);
+			}
 		}
 		return amountInDateRange;
 	}
