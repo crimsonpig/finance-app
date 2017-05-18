@@ -12,21 +12,24 @@ public class BudgetItemAmountService {
 		BudgetItem output = item;
 		BigDecimal totalAmount = item.getAmount();
 		
-		if(!BigDecimal.ZERO.equals(totalAmount)){
-			Integer budgetItemDays = calculateBudgetDays(item.getStartDate(), item.getEndDate());
-			Integer dateRangeDays = calculateBudgetDays(dateRangeStart, dateRangeEnd);
-			
-			BigDecimal amountInDateRange = calculateAmountForDateRange(budgetItemDays, dateRangeDays, totalAmount);
-			output.setAmount(amountInDateRange);
-		}
+		Integer budgetItemDays = calculateBudgetDays(item.getStartDate(), item.getEndDate());
+		Integer dateRangeDays = calculateBudgetDays(dateRangeStart, dateRangeEnd);
+		
+		BigDecimal amountInDateRange = calculateAmountForDateRange(budgetItemDays, dateRangeDays, totalAmount);
+		output.setAmount(amountInDateRange);
+		
 		return output;
 	}
 
 	BigDecimal calculateAmountForDateRange(Integer budgetItemDays, Integer dateRangeDays,
 			BigDecimal totalAmount) {
+		BigDecimal amountInDateRange = totalAmount;
+		
 		double dateRangeRatio = dateRangeDays.doubleValue() / budgetItemDays.doubleValue();
-		BigDecimal fractionalPercentage = new BigDecimal(dateRangeRatio).setScale(16, BigDecimal.ROUND_HALF_UP);
-		BigDecimal amountInDateRange = totalAmount.multiply(fractionalPercentage).setScale(2, BigDecimal.ROUND_HALF_UP);
+		if(dateRangeRatio < 1.0){
+			BigDecimal fractionalPercentage = new BigDecimal(dateRangeRatio).setScale(16, BigDecimal.ROUND_HALF_UP);
+			amountInDateRange = totalAmount.multiply(fractionalPercentage).setScale(2, BigDecimal.ROUND_HALF_UP);
+		}
 		return amountInDateRange;
 	}
 

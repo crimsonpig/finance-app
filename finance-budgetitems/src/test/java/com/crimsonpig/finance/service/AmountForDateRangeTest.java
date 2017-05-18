@@ -21,7 +21,7 @@ public class AmountForDateRangeTest {
 		int budgetItemNumberOfDays = 1;
 		int dateRangeNumberOfDays = 1; 
 		BigDecimal budgetItemAmount = new BigDecimal(500);
-		BigDecimal expectedAmount = new BigDecimal("500.00");
+		BigDecimal expectedAmount = new BigDecimal(500);
 		BigDecimal actualAmount = subject.calculateAmountForDateRange(budgetItemNumberOfDays, dateRangeNumberOfDays, budgetItemAmount);
 		assertEquals(expectedAmount, actualAmount);
 	}
@@ -31,7 +31,27 @@ public class AmountForDateRangeTest {
 		int budgetItemNumberOfDays = 31;
 		int dateRangeNumberOfDays = 31; 
 		BigDecimal budgetItemAmount = new BigDecimal(500);
-		BigDecimal expectedAmount = new BigDecimal("500.00");
+		BigDecimal expectedAmount = new BigDecimal(500);
+		BigDecimal actualAmount = subject.calculateAmountForDateRange(budgetItemNumberOfDays, dateRangeNumberOfDays, budgetItemAmount);
+		assertEquals(expectedAmount, actualAmount);
+	}
+	
+	@Test
+	public void test31DayDifferenceAmount61DayRange(){
+		int budgetItemNumberOfDays = 31;
+		int dateRangeNumberOfDays = 61; 
+		BigDecimal budgetItemAmount = new BigDecimal(500);
+		BigDecimal expectedAmount = new BigDecimal(500);
+		BigDecimal actualAmount = subject.calculateAmountForDateRange(budgetItemNumberOfDays, dateRangeNumberOfDays, budgetItemAmount);
+		assertEquals(expectedAmount, actualAmount);
+	}
+	
+	@Test
+	public void test61DayDifferenceAmount365DayRange(){
+		int budgetItemNumberOfDays = 61;
+		int dateRangeNumberOfDays = 365; 
+		BigDecimal budgetItemAmount = new BigDecimal(500);
+		BigDecimal expectedAmount = new BigDecimal(500);
 		BigDecimal actualAmount = subject.calculateAmountForDateRange(budgetItemNumberOfDays, dateRangeNumberOfDays, budgetItemAmount);
 		assertEquals(expectedAmount, actualAmount);
 	}
