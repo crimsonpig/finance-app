@@ -28,8 +28,8 @@ public class AmountForDateRangeTest {
 	
 	@Test
 	public void test31DayDifferenceAmount31DayRange(){
-		int budgetItemNumberOfDays = 32;
-		int dateRangeNumberOfDays = 32; 
+		int budgetItemNumberOfDays = 31;
+		int dateRangeNumberOfDays = 31; 
 		BigDecimal budgetItemAmount = new BigDecimal(500);
 		BigDecimal expectedAmount = new BigDecimal("500.00");
 		BigDecimal actualAmount = subject.calculateAmountForDateRange(budgetItemNumberOfDays, dateRangeNumberOfDays, budgetItemAmount);
@@ -38,30 +38,30 @@ public class AmountForDateRangeTest {
 	
 	@Test
 	public void test31DayDifferenceAmount15DayRange(){
-		int budgetItemNumberOfDays = 32;
+		int budgetItemNumberOfDays = 31;
 		int dateRangeNumberOfDays = 15; 
 		BigDecimal budgetItemAmount = new BigDecimal(500);
-		BigDecimal expectedAmount = new BigDecimal("234.38");
+		BigDecimal expectedAmount = new BigDecimal("241.94");
 		BigDecimal actualAmount = subject.calculateAmountForDateRange(budgetItemNumberOfDays, dateRangeNumberOfDays, budgetItemAmount);
 		assertEquals(expectedAmount, actualAmount);
 	}	
 	
 	@Test
 	public void test31DayDifferenceAmount11DayRange(){
-		int budgetItemNumberOfDays = 32;
+		int budgetItemNumberOfDays = 31;
 		int dateRangeNumberOfDays = 11; 
 		BigDecimal budgetItemAmount = new BigDecimal(500);
-		BigDecimal expectedAmount = new BigDecimal("171.88");
+		BigDecimal expectedAmount = new BigDecimal("177.42");
 		BigDecimal actualAmount = subject.calculateAmountForDateRange(budgetItemNumberOfDays, dateRangeNumberOfDays, budgetItemAmount);
 		assertEquals(expectedAmount, actualAmount);
 	}
 	
 	@Test
-	public void test32DayDifferenceAmount6DayRange(){
-		int budgetItemNumberOfDays = 32;
+	public void test31DayDifferenceAmount6DayRange(){
+		int budgetItemNumberOfDays = 31;
 		int dateRangeNumberOfDays = 6; 
 		BigDecimal budgetItemAmount = new BigDecimal(500);
-		BigDecimal expectedAmount = new BigDecimal("93.75");
+		BigDecimal expectedAmount = new BigDecimal("96.77");
 		BigDecimal actualAmount = subject.calculateAmountForDateRange(budgetItemNumberOfDays, dateRangeNumberOfDays, budgetItemAmount);
 		assertEquals(expectedAmount, actualAmount);
 	}		
