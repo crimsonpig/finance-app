@@ -48,7 +48,7 @@ public class BudgetItemAmountServiceTest {
 	}	
 	
 	@Test
-	public void testZeroExpenseItemAmountMoreThanOneDayBut5DayDateRange(){
+	public void testZeroExpenseItemAmountMoreThanOneDayBut6DayDateRange(){
 		BudgetItem item = new BudgetItem(1L, "FOOD", BigDecimal.ZERO, "E", LocalDate.of(2017, 5, 1), LocalDate.of(2017, 5, 31));
 		BudgetItem adjusted = amountService.computeRelativeAmountByDateRange(item, LocalDate.of(2017, 5, 15), LocalDate.of(2017, 5, 20));
 		assertEquals(BigDecimal.ZERO, adjusted.getAmount());
@@ -110,4 +110,40 @@ public class BudgetItemAmountServiceTest {
 		assertEquals(new BigDecimal("161.29"), adjusted.getAmount());
 	}	
 		
+
+	@Test
+	public void testNonZeroExpenseItemAmountMoreThanOneDayBut6DayDateRange(){
+		BudgetItem item = new BudgetItem(1L, "FOOD", new BigDecimal(500), "E", LocalDate.of(2017, 5, 1), LocalDate.of(2017, 5, 31));
+		BudgetItem adjusted = amountService.computeRelativeAmountByDateRange(item, LocalDate.of(2017, 5, 15), LocalDate.of(2017, 5, 20));
+		assertEquals(new BigDecimal("96.77"), adjusted.getAmount());
+	}		
+	
+	@Test
+	public void testNonZeroExpenseItemAmountMoreThanOneDayBut15DayDateRange(){
+		BudgetItem item = new BudgetItem(1L, "FOOD", new BigDecimal(500), "E", LocalDate.of(2017, 5, 1), LocalDate.of(2017, 5, 31));
+		BudgetItem adjusted = amountService.computeRelativeAmountByDateRange(item, LocalDate.of(2017, 5, 1), LocalDate.of(2017, 5, 15));
+		assertEquals(new BigDecimal("241.94"), adjusted.getAmount());
+	}			
+	
+	@Test
+	public void tesNontZeroExpenseItemAmountMoreThanOneDayButLargerDateRange1(){
+		BudgetItem item = new BudgetItem(1L, "FOOD", new BigDecimal(500), "E", LocalDate.of(2017, 5, 1), LocalDate.of(2017, 5, 31));
+		BudgetItem adjusted = amountService.computeRelativeAmountByDateRange(item, LocalDate.of(2017, 5, 1), LocalDate.of(2017, 6, 30));
+		assertEquals(new BigDecimal(500), adjusted.getAmount());
+	}	
+
+	@Test
+	public void testNonZeroExpenseItemAmountMoreThanOneDayButLargerDateRange2(){
+		BudgetItem item = new BudgetItem(1L, "FOOD", new BigDecimal(500), "E", LocalDate.of(2017, 5, 1), LocalDate.of(2017, 5, 31));
+		BudgetItem adjusted = amountService.computeRelativeAmountByDateRange(item, LocalDate.of(2017, 4, 1), LocalDate.of(2017, 5, 31));
+		assertEquals(new BigDecimal(500), adjusted.getAmount());
+	}		
+
+	@Test
+	public void testNonZeroExpenseItemAmountMoreThanOneDayButLargestDateRange(){
+		BudgetItem item = new BudgetItem(1L, "FOOD", new BigDecimal(500), "E", LocalDate.of(2017, 5, 1), LocalDate.of(2017, 5, 31));
+		BudgetItem adjusted = amountService.computeRelativeAmountByDateRange(item, LocalDate.of(2017, 4, 1), LocalDate.of(2017, 6, 30));
+		assertEquals(new BigDecimal(500), adjusted.getAmount());
+	}	
+	
 }
